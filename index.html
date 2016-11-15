@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <title>N&C</title>
+        <style>
+        .cell {
+          transition: all linear 0.5s;
+          background-color: lightblue;
+          border-color:black;
+          border-width: thin;
+          border-style: solid;  
+          height: 100px;
+          width: 100px;
+          position: relative;
+          float: left;
+        }
+        #triple {
+            position: relative;
+            width: 306px;
+            height: 306px;
+            border-color:black;
+          border-width: thin;
+          border-style: solid;  
+        }
+        .ng-hide {
+          height: 0;
+          width: 0;
+          background-color: transparent;
+          top:-200px;
+          left: 200px;
+        }
+        </style>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller ="myController">
+            <div id="triple">
+                <div class="cell" ng-repeat="x in names">{{x}}</div>
+            </div>
+        </div>
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('myController', function ($scope) {
+                var a = function (cell) {}
+                $scope.names = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            });
+        </script>
+    </body>
+</html>

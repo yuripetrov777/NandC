@@ -35,27 +35,48 @@
     </head>
     <body>
         <div ng-app="myApp" ng-controller ="myController">
-            <div id="triple">
-                <div class="cell" ng-repeat="x in names"  ng-style ="myStyle" ng-click="myStyle={'background-image': 'url(a.png)'};x=x+1" >{{x}}</div>
+            <div id="triple" ng-init="initGame()">
+                <div class="cell" ng-repeat="x in cells"  ng-style ="{'background-image':  'url(' + x.picSrc + ')' }" ng-click="setXorO(x.num);count=count + 1" >{{count}} {{x.num}} {{x.picSrc}}</div>
             </div>
+            <div>{{cells}}</div>
         </div>
         <script>
             var app = angular.module('myApp', []);
             app.controller('myController', function ($scope) {
-                var a = function (cell) {}
-                $scope.names = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                $scope.initGame = function () {
+                    $scope.src = "o.png";
+                    $scope.count = 0;
+                    //$scope.myStyle = {};
+                    $scope.names = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                    var n = 3;
+                    $scope.cells = [];
+                    for (var i = 0; i < n * n; i++) {
+                        $scope.cells.push({ num: i, picSrc: "a.png", clicked: 0 });
+                    }
+                };
+                $scope.setXorO = function (fieldNum) {
+                    if ($scope.cells[fieldNum].clicked == 0) {
+                        if ($scope.src == "x.png") {
+                            $scope.src = "o.png"
+                            $scope.cells[fieldNum].clicked = 2;
+                        } else {
+                            $scope.src = "x.png"
+                            $scope.cells[fieldNum].clicked = 1;
+                        }
+                        $scope.cells[fieldNum].picSrc = $scope.src;
+                    }
+                };
             });
-            app.service('hexafy', function() {
-            this.myFunc = function (x) {
-                return x.toString(16);
-                }
+            app.service('hexafy', function () {
+                //this.myFunc = function (x) {
+                //    return x.toString(16);
+                //}
             });
-            app.filter('myFormat',['hexafy', function(hexafy) {
-                return function(x) {
+            app.filter('myFormat', ['hexafy', function (hexafy) {
+                return function (x) {
                     return hexafy.myFunc(x);
                 };
-            }]);
-
+            } ]);
         </script>
     </body>
 </html>

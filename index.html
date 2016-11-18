@@ -56,11 +56,11 @@
                 };
                 $scope.setXorO = function (fieldNum) {
                     if ($scope.cells[fieldNum].clicked == 0) {
-                        if ($scope.src == "x.png") {
-                            $scope.src = "o.png"
+                        if ($scope.src == "picX.png") {
+                            $scope.src = "picO.png"
                             $scope.cells[fieldNum].clicked = 2;
                         } else {
-                            $scope.src = "x.png"
+                            $scope.src = "[picX.png"
                             $scope.cells[fieldNum].clicked = 1;
                         }
                         $scope.cells[fieldNum].picSrc = $scope.src;

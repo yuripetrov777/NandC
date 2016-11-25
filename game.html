@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <!-- Jasmine References >
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script-->
+    
+        <!-- Angular and Angular Mock references -->
+        <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+        <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+        <link rel="stylesheet" href="css/styles.css">
+        <title>N&C</title>
+    </head>
+    <body><!--head of application, initiation of field-->
+        <div ng-app="myApp" ng-controller ="myController" ng-init="initGame()">
+            <H1 id="moveText" class="simpleText"><!--setter of field resolution-->
+                <!--div>
+                    Set resolution of field (between 3 and 10):
+                    <input type="number" id="resNumber" min="3" max="10" value="3">
+                    <input type="button" value="Set" ng-click="initGame()">
+                </div-->
+            </H1>
+            <!--automatically resizeable field-->
+            <div ng-style="fieldWidth" id="widthOfField">
+                <div class="cell" ng-repeat="x in arr"  ng-style ="{'background-image':  'url(pic/' + x.picSrc + ')' }" ng-click="setXorO(x)" ><!--{{count}} {{x.x}}{{x.y}} {{x.clicked}}--></div>
+            </div>    
+            <!--div>{{arr}}</div-->
+            <!--if winner found show him-->
+            <div ng-if="checkWin(res, arr)">
+                <!--h1>WINNER:</h1>
+                <p>Congratulations!!!</p>
+                <hr-->
+            </div>
+        </div>
+        <!--script of angular-->
+        <script src="jsscripts/angular/main.js"></script>
+        <!--script of tests on jusmine>
+        <script src="jsscripts/test/test.js"></script-->
+    </body>
+</html>

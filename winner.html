@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="css/styles.css">
+        <title>Winner</title>
+    </head>
+    <body>
+        <H1 class="winner" id="winText">Congratulations!!!<br></H1>
+        <input type="button" id="btn" value="Restart Game" onclick="restartGame()">
+        <script>
+            var w = localStorage.getItem('winner');
+            if (w == 'Nobody')
+            {
+                document.getElementById('winText').innerHTML = 'DRAW!';
+            } else
+            {
+                document.getElementById('winText').innerHTML += w + ' wins!';
+            }
+            var restartGame = function ()
+            {
+                window.location.href = 'index.html';
+            }
+        </script>
+    </body>
+</html>

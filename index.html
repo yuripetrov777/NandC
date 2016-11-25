@@ -2,81 +2,26 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-        <title>N&C</title>
-        <style>
-        .cell {
-          transition: all linear 0.5s;
-          background-color: lightblue;
-          border-color:black;
-          border-width: thin;
-          border-style: solid;  
-          height: 100px;
-          width: 100px;
-          position: relative;
-          float: left;
-        }
-        #triple {
-            position: relative;
-            width: 306px;
-            height: 306px;
-            border-color:black;
-          border-width: thin;
-          border-style: solid;  
-        }
-        .ng-hide {
-          height: 0;
-          width: 0;
-          background-color: transparent;
-          top:-200px;
-          left: 200px;
-        }
-        </style>
+        <link rel="stylesheet" href="css/styles.css">
+        <title>Noughts and Crosses</title>
     </head>
     <body>
-        <div ng-app="myApp" ng-controller ="myController">
-            <div id="triple" ng-init="initGame()">
-                <div class="cell" ng-repeat="x in cells"  ng-style ="{'background-image':  'url(' + x.picSrc + ')' }" ng-click="setXorO(x.num);count=count + 1" >{{count}} {{x.num}} {{x.picSrc}}</div>
-            </div>
-            <div>{{cells}}</div>
+        <H1 class="greenStyle">Noughts and Crosses</H1><br>
+        <div>
+            <form id="form" action="game.html" method="post"><!--setter of field resolution-->
+                <div class="simpleText">Set resolution of field (between 3 and 10):
+                    <input type="number" class="inputText" id="resNumber" min="3" max="10" value="3" maxlength="2">
+                </div><br>
+                <div class="simpleText">First player:  
+                        <input type="text" class="inputText" id="firstPlayer" value="Player1">
+                </div><br>
+                <div class="simpleText">Second player:  
+                    <input type="text" class="inputText" id="secondPlayer" value="Player2">
+                </div><br><br>
+                <input type="button" id="btn" value="Start Game" onclick="setNamesAndRes()">
+            </form>
+            <div id="warning"></div>
         </div>
-        <script>
-            var app = angular.module('myApp', []);
-            app.controller('myController', function ($scope) {
-                $scope.initGame = function () {
-                    $scope.src = "o.png";
-                    $scope.count = 0;
-                    //$scope.myStyle = {};
-                    $scope.names = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-                    var n = 3;
-                    $scope.cells = [];
-                    for (var i = 0; i < n * n; i++) {
-                        $scope.cells.push({ num: i, picSrc: "a.png", clicked: 0 });
-                    }
-                };
-                $scope.setXorO = function (fieldNum) {
-                    if ($scope.cells[fieldNum].clicked == 0) {
-                        if ($scope.src == "picX.png") {
-                            $scope.src = "picO.png"
-                            $scope.cells[fieldNum].clicked = 2;
-                        } else {
-                            $scope.src = "[picX.png"
-                            $scope.cells[fieldNum].clicked = 1;
-                        }
-                        $scope.cells[fieldNum].picSrc = $scope.src;
-                    }
-                };
-            });
-            app.service('hexafy', function () {
-                //this.myFunc = function (x) {
-                //    return x.toString(16);
-                //}
-            });
-            app.filter('myFormat', ['hexafy', function (hexafy) {
-                return function (x) {
-                    return hexafy.myFunc(x);
-                };
-            } ]);
-        </script>
+        <script src="jsscripts/auth.js"></script>
     </body>
 </html>
